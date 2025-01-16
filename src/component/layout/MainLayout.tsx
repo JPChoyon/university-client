@@ -1,28 +1,8 @@
-import { Layout, Menu, MenuProps } from "antd";
+import { Layout, Menu } from "antd";
+import { Outlet } from "react-router-dom";
+import { adminSidebarItems } from "../../routes/Admin.route";
 
 const { Header, Content, Footer, Sider } = Layout;
-const items: MenuProps["items"] = [
-  {
-    key: "1",
-    label: "Dashboard",
-  },
-  {
-    key: "2",
-    label: "Profile",
-  },
-  {
-    key: "3",
-    label: "Users",
-  },
-  {
-    key: "4",
-    label: "Dashboard",
-  },
-  {
-    key: "5",
-    label: "Test",
-  },
-];
 
 const MainLayout = () => {
   return (
@@ -38,12 +18,23 @@ const MainLayout = () => {
             console.log(collapsed, type);
           }}
         >
-          <div className="demo-logo-vertical" />
+          <div
+            style={{
+              color: "white",
+
+              height: "4rem",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <h1>JPCK University</h1>
+          </div>
           <Menu
             theme="dark"
             mode="inline"
             defaultSelectedKeys={["4"]}
-            items={items}
+            items={adminSidebarItems}
           />
         </Sider>
         <Layout>
@@ -55,7 +46,7 @@ const MainLayout = () => {
                 minHeight: 360,
               }}
             >
-              content
+              <Outlet></Outlet>
             </div>
           </Content>
           <Footer style={{ textAlign: "center" }}>
