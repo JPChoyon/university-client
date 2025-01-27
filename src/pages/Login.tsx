@@ -1,20 +1,21 @@
-import { Button } from "antd";
-import { FieldValues, useForm } from "react-hook-form";
+
+import { Button, Row } from "antd";
+import { FieldValues } from "react-hook-form";
 import { useLoginMutation } from "../redux/feature/auth/AuthApi";
 import { useAppDispatch } from "../redux/hooks";
 import { setUser, TUser } from "../redux/feature/auth/AuthSlice";
 import { verifyToken } from "../utils/verifyToken";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import JpUniForm from "../component/form/JpUniForm";
+import JpUniInput from "../component/form/JpUniInput";
 
 const Login = () => {
   const dispatch = useAppDispatch();
-  const { register, handleSubmit } = useForm({
-    defaultValues: {
-      id: "A-0001",
-      password: "admin123",
-    },
-  });
+  const defaultValues = {
+    id: "A-0001",
+    password: "admin123",
+  };
   const navigate = useNavigate();
   const [login] = useLoginMutation();
 
@@ -36,27 +37,13 @@ const Login = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div className=" relative ">
-        <input
-          type="text"
-          id="id"
-          className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-          placeholder="Your Id"
-          {...register("id")}
-        />
-      </div>
-      <div className=" relative ">
-        <input
-          type="text"
-          id="password"
-          className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-          placeholder="Password"
-          {...register("password")}
-        />
-      </div>
-      <Button htmlType="submit">Log In</Button>
-    </form>
+    <Row justify="center" align="middle" style={{ height: "100vh" }}>
+      <JpUniForm onSubmit={onSubmit} defaultValues={defaultValues}>
+        <JpUniInput type="text" name="id" label="ID:" />
+        <JpUniInput type="text" name="password" label="Password:" />
+        <Button htmlType="submit">Log In</Button>
+      </JpUniForm>
+    </Row>
   );
 };
 
