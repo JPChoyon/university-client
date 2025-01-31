@@ -1,17 +1,20 @@
-import { Input } from "antd";
+import { Form, Input } from "antd";
 import { Controller } from "react-hook-form";
 type TInputProps = {
   type: string;
   name: string;
   label?: string;
-}
-const JpUniInput = ({ type, name, label }:TInputProps) => {
+};
+const JpUniInput = ({ type, name, label }: TInputProps) => {
   return (
-    <div style={{ marginBottom: "2px" }}> 
-      {label ? label : null}
+    <div style={{ marginBottom: "2px" }}>
       <Controller
         name={name}
-        render={({ field }) => <Input {...field} type={type} id={name} />}
+        render={({ field }) => (
+          <Form.Item label={label}>
+            <Input {...field} type={type} id={name}  size="large"/>
+          </Form.Item>
+        )}
       />
     </div>
   );

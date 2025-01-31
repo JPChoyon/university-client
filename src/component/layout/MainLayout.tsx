@@ -16,7 +16,7 @@ const MainLayout = () => {
   };
   return (
     <div>
-      <Layout style={{ height: "100vh" }}>
+      <Layout style={{ height: "100%" }}>
         <SideBar />
         <Layout>
           <Header style={{ padding: 0 }}>
