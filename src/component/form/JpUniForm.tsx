@@ -8,15 +8,19 @@ import {
 } from "react-hook-form";
 type TFormConfig = {
   defaultValues?: Record<string, any>;
+  resolver?: any;
 };
 type TProps = {
   onSubmit: SubmitHandler<FieldValues>;
   children: ReactNode;
 } & TFormConfig;
-const JpUniForm = ({ onSubmit, children, defaultValues }: TProps) => {
+const JpUniForm = ({ onSubmit, children, defaultValues,resolver }: TProps) => {
   const formConfig: TFormConfig = {};
   if (defaultValues) {
     formConfig["defaultValues"] = defaultValues;
+  }
+  if (resolver) {
+    formConfig["resolver"] = resolver;
   }
   const methods = useForm(formConfig);
   return (
