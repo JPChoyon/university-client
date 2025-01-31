@@ -6,7 +6,18 @@ export type TErrorResponse = {
   };
   status: number;
 };
-export type TResponse = {
-  data?: any;
+export type TMeta = {
+  limit: number;
+  page: number;
+  total: number;
+  totalPage: number;
+};
+export type TResponse<T> = {
+  data?: T;
   error?: TErrorResponse;
-}
+  meta?: TMeta;
+  success: boolean;
+  message?: string;
+};
+
+// export type TResponseRedux = TResponse & basequeryapi
