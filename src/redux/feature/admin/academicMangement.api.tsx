@@ -15,8 +15,25 @@ const academicSemesterManagement = baseApi.injectEndpoints({
         body: data,
       }),
     }),
+    getAcademicDepartments: builder.query({
+      query: () => ({
+        url: "/academic-departments",
+        method: "GET",
+      }),
+    }),
+    addAcademicDepartment: builder.mutation({
+      query: (data) => ({
+        url: "/academic-departments/create-academic-department",
+        method: "POST",
+        body: data,
+      }),
+    }),
   }),
 });
 
-export const { useGetAllSemestersQuery, useAddAcademicSemesterMutation } =
-  academicSemesterManagement;
+export const {
+  useGetAllSemestersQuery,
+  useAddAcademicSemesterMutation,
+  useGetAcademicDepartmentsQuery,
+  useAddAcademicDepartmentMutation,
+} = academicSemesterManagement;
